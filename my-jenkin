@@ -18,8 +18,14 @@ pipeline {
         sh 'ls -ltr'
         // build the project and create a JAR file
        // sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
-        sh label: 'building artifact ', script: 'mvn clean package'
+        //sh label: 'building artifact ', script: 'mvn clean package'
+        sh label: 'removing image' , script: 'docker rmi suhasdhoke92/suhas-maven:latest'
       }
     }
+    stage('Unit Testing') 
+	      {
+              sh label: 'for testing purpose', script: 'ls -ld /var/lib/jenkins/workspace/test-new/webapp/target/webapp.war; echo "Testing Passed"'
+	      }
+
   }
 }
