@@ -24,8 +24,19 @@ pipeline {
     }
     stage('Unit Testing') 
 	      {
-              sh label: 'for testing purpose', script: 'ls -ld /var/lib/jenkins/workspace/test-new/webapp/target/webapp.war; echo "Testing Passed"'
+              sh label: 'for testing purpose', script: 'ls -ld /var/lib/jenkins/workspace/test-new/webapp/target/webapp.war; echo "Testing Passed";echo ${BUILD_NAME}'
+		
 	      }
+    
+     stage('Static Code Analysis') {
+     // environment {
+        //SONAR_URL = "http://34.201.116.83:9000"
+     // }
+      	//		steps {
+          // withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+          // sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
+        //					}
+      	//				}
+ 				 }
 
-  }
 }
