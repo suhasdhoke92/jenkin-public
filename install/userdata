@@ -21,7 +21,7 @@ systemctl restart docker
 apt-get -y install maven
 
 ## install tomcat
-apt install -y tomcat8
+apt install -y tomcat9
 
 ## intall mvn ## this is not require actully 
 wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
