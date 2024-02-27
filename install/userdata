@@ -17,6 +17,8 @@ usermod -aG docker jenkins
 usermod -aG docker ubuntu
 systemctl restart docker
 
+#### using package maven
+apt-get -y install maven
 
 ## intall mvn
 wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
