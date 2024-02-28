@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: login-app
-        image: suhasdhoke92/ultimate-cicd:replaceImageTag
+        image: suhasdhoke92/ultimate-cicd:7
         ports:
         - containerPort: 8080
