@@ -1,10 +1,10 @@
 FROM tomcat:latest
 
-ARG artifact=target/spring-boot-web.jar
+ARG artifact=/var/lib/jenkins/workspace/final.war
 
 WORKDIR /usr/local/tomcat/webapps/
 
-COPY ${artifact} app.jar
+COPY ${artifact} final.war
 
 #COPY final.war /usr/local/tomcat/webapps/
 
