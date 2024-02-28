@@ -19,7 +19,8 @@ pipeline
             {
                 sh 'mvn package'
                 sh 'cp /var/lib/jenkins/workspace/last/webapp/target/webapp.war /var/lib/jenkins/workspace/final.war'
-                 git branch: 'main', url: 'https://github.com/suhasdhoke92/jenkin-public'
+                git branch: 'main', url: 'https://github.com/suhasdhoke92/jenkin-public'
+                sh 'cp /var/lib/jenkins/workspace/final.war /var/lib/jenkins/workspace/last/Docker/'
             }
         }
         stage('Build and Push Docker Image')
