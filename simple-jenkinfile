@@ -1,3 +1,4 @@
+///// pipeline name should be 'last' here, else need to make changes in each below file
 pipeline
 {
     agent any
@@ -21,7 +22,9 @@ pipeline
         {
             steps
             {
-                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war vagrant@10.10.10.32:/var/lib/tomcat7/webapps/qaenv.war'
+                sh 'scp /var/lib/jenkins/workspace/last/webapp/target/webapp.war suhas@172.31.44.128:/tmp/'
+                sh 'ssh -t suhas@ip-172-31-44-128 "sudo cp -ip /tmp/*.war /var/lib/tomcat9/webapps/qaenv.war" '
+                // passwordless connection bet jenkins to suhas@targetserver, make passauthentication yes in target server
             }
         }
         stage('ContTesting')
@@ -29,7 +32,8 @@ pipeline
             steps
             {
                 git 'https://github.com/selenium-saikrishna/TestingOnLinux.git'
-                sh 'java -jar  /var/lib/jenkins/workspace/Declarative_Pipeline/testing.jar'
+                sh 'java -jar  /var/lib/jenkins/workspace/last/testing.jar'
             }
         }
     }
+}
