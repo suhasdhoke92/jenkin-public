@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-ARG artifact=target/webapp.war
+ARG artifact=final.war
 
 WORKDIR /usr/local/tomcat/webapps/
 
