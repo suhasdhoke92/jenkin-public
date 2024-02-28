@@ -1,1 +1,40 @@
 
+///// pipeline name should be 'last' here, else need to make changes in each below file
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('ContDownload')
+        {
+            steps
+            {
+                git 'https://github.com/selenium-saikrishna/maven.git'
+                git 'https://github.com/suhasdhoke92/jenkin-public.git'
+            }
+        }
+        stage('ContBuild')
+        {
+            steps
+            {
+                sh 'mvn package'
+            }
+        }
+        stage('Build and Push Docker Image')
+        {
+        environment {
+                    DOCKER_IMAGE = "suhasdhoke92/ultimate-cicd:${BUILD_NUMBER}"
+                    REGISTRY_CREDENTIALS = credentials('docker-cred')
+                    }
+        steps {
+              script {
+                      sh 'cd Docker && docker build -t ${DOCKER_IMAGE} .'
+                      def dockerImage = docker.image("${DOCKER_IMAGE}")
+                      docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+                      dockerImage.push()
+                            }
+                      }
+        }
+        }
+    }
+}
