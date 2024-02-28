@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-ARG artifact=/var/lib/jenkins/workspace/final.war
+ARG artifact=target/webapp.war
 
 WORKDIR /usr/local/tomcat/webapps/
 
