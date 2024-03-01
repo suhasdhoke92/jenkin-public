@@ -24,4 +24,15 @@ apt-get -y install maven
 apt install -y tomcat9
 ## passwordless connection should be between jenkins user to target user
 
-
+################intsall sonarqube
+apt update -y 
+apt install openjdk-11-jre -y 
+apt install unzip -y 
+useradd sonarqube  #mention the home directory or use adduser
+su - sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+unzip *
+chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+./sonar.sh start
